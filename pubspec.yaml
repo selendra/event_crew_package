@@ -1,5 +1,5 @@
 name: event_crew
-description: A new Flutter package project.
+description: The package for event crew with any functional such as scan qr check in with vibration.
 version: 0.0.1
 homepage: https://github.com/selendra/event_crew_package.git
 

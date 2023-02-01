@@ -1,6 +1,4 @@
-import 'package:event_crew/src/components/home/bottom_c.dart';
-import 'package:event_crew/src/components/text_c.dart';
-import 'package:event_crew/src/tool/app_utils.dart';
+import 'package:event_crew/event_crew.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
