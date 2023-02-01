@@ -12,7 +12,7 @@ class SoundUtil {
     });
 
     await FlutterRingtonePlayer.play(
-      fromAsset: 'assets/sounds/$soundName',
+      fromAsset: 'packages/event_crew/assets/sounds/$soundName',
       ios: IosSounds.glass,
       looping: false, // Android only - API >= 28
       volume: 1.0, // Android only - API >= 28
