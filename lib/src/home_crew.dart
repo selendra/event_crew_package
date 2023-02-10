@@ -1,50 +1,48 @@
 import 'package:event_crew/event_crew.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Home extends StatefulWidget {
   
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Home> createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends State<Home> {
 
-  final PageController controller = PageController();
-  
-  int? active = 0; 
-
-  Color? color = Colors.green.withOpacity(0.3);
-
-  List<Map<String, dynamic>> itemsList = [
-    {'asset': 'packages/event_crew/assets/icons/admission.png', 'name': 'Admission'},
-    {'asset': 'packages/event_crew/assets/icons/check-out.png', 'name': 'Check Out'},
-    {'asset': 'packages/event_crew/assets/icons/logout.png', 'name': 'Log Out'}
-  ];
+  HomeModel homeModel = HomeModel();
 
   @override
   void initState() {
 
-    controller.addListener(() {
+    homeModel.controller.addListener(() {
       setState(() {
-        
-        active = controller.page!.toInt();
+        homeModel.active = homeModel.controller.page!.toInt();
       });
     });
     super.initState();
   }
 
-  Future<void> onTap(int i) async {
-    
-    if (i != itemsList.length - 1){
+  /// onPageChange(int value)
+  void onPageChange(int value) {
+    homeModel.active = homeModel.controller.page!.toInt();
+
+    if (homeModel.controller.page!.toInt() == 0){
+      homeModel.color = Colors.blue.withOpacity(0.3);
+    } else if ((homeModel.controller.page!.toInt() == 1)){
+      homeModel.color = Colors.red.withOpacity(0.3);
+    }
+    if (value != homeModel.itemsList.length - 1){
       
-      controller.animateToPage(i, duration: const Duration(milliseconds: 300), curve: Curves.easeOutExpo);
+      homeModel.controller.animateToPage(value, duration: const Duration(milliseconds: 300), curve: Curves.easeOutExpo);
+      
     } else {
 
       // Just Close Dialog
       DialogCom().dialogMessage(
-                      context, 
+        context, 
         title: ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: SizedBox(
@@ -98,59 +96,26 @@ class _HomeState extends State<Home> {
         ),
       );
     }
-    // Map<String, dynamic> dfmData = await StorageServices.fetchData('dfm_api');
-
-    // // ignore: use_build_context_synchronously
-    // DialogCom().dialogLoading(context, content: "Signing Out");
-    // await StorageServices.clearStorage();
-
-
-    // await StorageServices.storeData(dfmData, 'dfm_api');
-                    
-    // Dispose Web Socket
-    // Provider.of<MDWSocketProvider>(context, listen: false).dispose();
-                    
-    // Navigator.pushAndRemoveUntil(
-    //   context, 
-    //   Transition(child: LoginPage(), transitionEffect: TransitionEffect.LEFT_TO_RIGHT), 
-    //   (route) => false
-    // );
+    setState(() { });
   }
 
   @override
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: AppUtil.convertHexaColor("#F2F2F2"),
+      backgroundColor: AppUtil.convertHexaColor(homeModel.bgColor!),
       body: SafeArea(
-        child: PageView(
-          controller: controller,
-          onPageChanged: (value) {
-            setState(() {
-              active = controller.page!.toInt();
-
-              if (controller.page!.toInt() == 0){
-                color = Colors.blue.withOpacity(0.3);
-              } else if ((controller.page!.toInt() == 1)){
-                color = Colors.red.withOpacity(0.3);
-              }
-            });
-          },
-          children: const [
-            Center(child: MyText(text: "Admission",),),
-            Center(child: MyText(text: "CheckOut",),),
-            // Check(tabType: 'Check',),
-            // Admission(tabType: 'Admission'),
-            // const CheckOut(),
-          ],
+        child: MyPageView(
+          homeModel: homeModel,
+          onPageChange: onPageChange
         ),
       ),
       bottomNavigationBar: bottomAppBarNoCheck(
         context: context, 
-        controller: controller, 
-        active: active,
-        itemsList: itemsList,
-        onTap: onTap
+        controller: homeModel.controller, 
+        active: homeModel.active,
+        itemsList: homeModel.itemsList,
+        onTap: onPageChange
       )
     );
   }

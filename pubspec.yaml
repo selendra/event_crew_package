@@ -1,6 +1,6 @@
 name: event_crew
 description: The package for event crew with any functional such as scan qr check in with vibration.
-version: 0.0.3
+version: 0.0.6
 homepage: https://github.com/selendra/event_crew_package.git
 
 environment:

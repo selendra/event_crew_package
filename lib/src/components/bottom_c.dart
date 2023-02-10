@@ -1,8 +1,4 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:event_crew/src/service/storage.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:event_crew/src/components/dialog_c.dart';
 import 'package:event_crew/src/components/text_c.dart';
 // import 'package:event_crew/src/provider/mdw_socket_p.dart';
 // import 'package:event_crew/src/registration/login.dart';
@@ -244,7 +240,8 @@ Widget bottomAppBarNoCheck({
   required PageController? controller,
   required List<Map<String, dynamic>> itemsList,
   required int? active,
-  required Function? onTap
+  required Function(int)? onTap
+  
 }){
 
   const double iconSize = 25;

@@ -9,6 +9,7 @@ export 'package:event_crew/src/qr_scanner/qr_scanner.dart';
 
 /// Component
 export 'package:event_crew/src/components/bottom_c.dart';
+export 'package:event_crew/src/components/pageview_c.dart';
 export 'package:event_crew/src/components/text_c.dart';
 export 'package:event_crew/src/components/dialog_c.dart';
 export 'package:event_crew/src/components/input_field_c.dart';
@@ -17,6 +18,9 @@ export 'package:event_crew/src/components/input_field_c.dart';
 export 'package:event_crew/src/tool/app_utils.dart';
 export 'package:event_crew/src/tool/sound.dart';
 
-// Service
+/// Service
 export 'package:event_crew/src/service/storage.dart';
+
+/// Model
+export 'package:event_crew/src/models/home_m.dart';
 

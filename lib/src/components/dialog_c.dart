@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:event_crew/src/components/text_c.dart';
 import 'package:event_crew/src/tool/app_utils.dart';
+import 'package:lottie/lottie.dart';
 
 class DialogCom {
   
@@ -69,36 +70,68 @@ class DialogCom {
   }
 
   Widget _progress({bool isTicket = false, String? content}) {
-  return Material(
-    color: Colors.transparent,
-    child: Stack(
-      alignment: Alignment.center,
-      children: <Widget>[
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
+    return Material(
+      color: Colors.transparent,
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
 
-            CircularProgressIndicator(
-              backgroundColor: Colors.transparent,
-              valueColor: AlwaysStoppedAnimation(
-                AppUtil.convertHexaColor("#34B768")
-              )
-            ),
-
-            if (content == null)
-            Container()
-            else
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10.0, top: 16.0),
-              child: MyText(
-                text: content, 
-                color2: Colors.black,
+              CircularProgressIndicator(
+                backgroundColor: Colors.transparent,
+                valueColor: AlwaysStoppedAnimation(
+                  AppUtil.convertHexaColor("#34B768")
+                )
               ),
-            ),
-          ],
-        )
-      ],
-    ),
-  );
-}
+
+              if (content == null)
+              Container()
+              else
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0, top: 16.0),
+                child: MyText(
+                  text: content, 
+                  color2: Colors.black,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Future<Widget> successMsg(BuildContext context, String msg, {String? animtaion}) async{
+    return await dialogMessage(
+      context, 
+      title: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: SizedBox(
+          width: 30,
+          child: Lottie.asset(
+            animtaion ?? "packages/event_crew/assets/animation/successful.json",
+            repeat: true,
+            reverse: true,
+            height: 100
+          ),
+        ),
+      ), 
+      content: MyText(text: msg, fontWeight: FontWeight.w500, left: 10, right: 10,)
+    ) ?? Container();
+  }
+
+  Future<Widget> errorMsg(BuildContext context, String error, {String? animtaion}) async {
+    return await dialogMessage(
+      context, 
+      title: Lottie.asset(
+        animtaion ?? "packages/event_crew/assets/animation/failed.json",
+        repeat: true,
+        reverse: true,
+        height: 80
+      ),
+      content: MyText(text: error, fontWeight: FontWeight.w500, left: 10, right: 10,)
+    ) ?? Container();
+  }
 }
