@@ -118,21 +118,70 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    homeModel.lstPageWidget[0] = checkInPage(title: "ISI DSC Crew", networkUrl: "");
+    homeModel.lstPageWidget[0] = checkInPage();
     homeModel.pageViewListenerInit(setState: (){});
     super.initState();
   }
 
-  Widget checkInPage({String? title, String? networkUrl}) {
+  Widget checkInPage() {
     return SafeArea(
-      child: Column(
-        children: [
-          
-        ],
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: itemsGridList()
       ),
     );
   }
 
+  Widget itemsGridList() {
+    return GridView.builder(
+      itemCount: 4,
+      physics: const BouncingScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: 16 / 7, 
+        crossAxisCount: 1,
+      ),
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 20.0),
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage("https://dangkorsenchey.com/images/memberships_card/Standard2.png"), 
+                fit: BoxFit.fill
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const MyText(
+                        text: "Basic",
+                        fontSize: 27,
+                        fontWeight: FontWeight.bold,
+                        color2: Colors.white,
+                      ),
+                      MyText(
+                        text: "0 Check In",
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color2: Colors.grey[50],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,36 +193,6 @@ class _HomePageState extends State<HomePage> {
         textColor: primaryColor,
         avatarBgColor: primaryColor
       ),
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   toolbarHeight: 100,
-      //   automaticallyImplyLeading: false,
-      //   title: Padding(
-      //     padding: const EdgeInsets.symmetric(vertical: 20),
-      //     child: Row(
-      //       children: [
-      //         SizedBox(
-      //           height: 50,
-      //           width: 50,
-      //           child: CircleAvatar(
-      //             backgroundColor: AppUtil.convertHexaColor(primaryColor),
-      //             backgroundImage: NetworkImage(widget.logo!),
-      //             radius: 100,
-      //           ),
-      //         ),
-
-      //         MyText(
-      //           left: 10,
-      //           text: widget.title,
-      //           fontSize: 20,
-      //           fontWeight: FontWeight.bold,
-      //           hexaColor: primaryColor,
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // ),
       body: MyPageView(
         homeModel: homeModel,
         onPageChange: onPageChange,
