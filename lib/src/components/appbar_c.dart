@@ -5,7 +5,7 @@ import 'text_c.dart';
 PreferredSizeWidget appBar({
   Color bgColor = Colors.transparent, 
   double elevation = 0,
-  double toolbarHeight = 100,
+  double toolbarHeight = 70,
   bool automaticallyImplyLeading = false,
   required String? avatarBgColor,
   required String? networkLogo,
