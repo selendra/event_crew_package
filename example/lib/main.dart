@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: const HomePage(title: 'ISI DSC Crew', logo: "https://dangkorsenchey.com/images/isi-dsc-logo.png")
     );
   }
 }

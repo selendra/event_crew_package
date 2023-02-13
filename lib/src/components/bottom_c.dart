@@ -1,3 +1,4 @@
+import 'package:event_crew/event_crew.dart';
 import 'package:flutter/material.dart';
 import 'package:event_crew/src/components/text_c.dart';
 // import 'package:event_crew/src/provider/mdw_socket_p.dart';
@@ -235,8 +236,12 @@ import 'package:event_crew/src/components/text_c.dart';
 //   );
 // }
 
+/// TextColor = Hexa Code Of Color
 Widget bottomAppBarNoCheck({
   required BuildContext? context,
+  required String bgColor,
+  String indicatorColor = "#FFFFFF",
+  String textColor = "#FFFFFF",
   required PageController? controller,
   required List<Map<String, dynamic>> itemsList,
   required int? active,
@@ -247,6 +252,7 @@ Widget bottomAppBarNoCheck({
   const double iconSize = 25;
 
   return BottomAppBar(
+    color: AppUtil.convertHexaColor(bgColor),
     child: SizedBox(
       height: 70,
       child: Row(
@@ -280,6 +286,7 @@ Widget bottomAppBarNoCheck({
                             text: itemsList[i]['name'],
                             fontSize: 10,
                             bottom: 5,
+                            hexaColor: textColor,
                           ),
                         ],
                       )
@@ -290,7 +297,7 @@ Widget bottomAppBarNoCheck({
                   active == i ? Container(
                     height: 5,
                     width: double.maxFinite,
-                    color: Colors.blue,
+                    color: AppUtil.convertHexaColor(indicatorColor),
                   ) : Container()
                 ],
               ),

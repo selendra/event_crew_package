@@ -12,13 +12,14 @@ class HomeModel {
   String? bgColor = "#F2F2F2";
 
   List<Map<String, dynamic>> itemsList = [
-    {'asset': 'packages/event_crew/assets/icons/admission.png', 'name': 'Admission'},
+    {'asset': 'packages/event_crew/assets/icons/admission.png', 'name': 'Check In'},
     {'asset': 'packages/event_crew/assets/icons/check-out.png', 'name': 'Check Out'},
     {'asset': 'packages/event_crew/assets/icons/logout.png', 'name': 'Log Out'}
   ];
 
-  List<Widget> lstPageWidget = const [
-    Center(child: MyText(text: "Admission",),),
+  List<Widget> lstPageWidget = [
+    // checkInPage(),
+    Center(child: MyText(text: "CheckIn",),),
     Center(child: MyText(text: "CheckOut",),),
     // Check(tabType: 'Check',),
     // Admission(tabType: 'Admission'),
@@ -39,9 +40,6 @@ class HomeModel {
       if (setState != null) setState;
     });
   }
-
-  
-
   /// onTap(context, int i, setState)
   // Future<void> onTap(BuildContext context, int i, Function? setState) async {
     

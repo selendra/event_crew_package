@@ -2,13 +2,20 @@ import 'package:event_crew/event_crew.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+
+  final String? logo;
+  final String? title;
+
+
+  const HomePage({super.key, required this.logo, required  this.title});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final String primaryColor = "#254294";
 
   HomeModel homeModel = HomeModel();
 
@@ -104,25 +111,74 @@ class _HomePageState extends State<HomePage> {
     }
     setState(() { });
 
-    SoundUtil.soundAndVibrate(SOUND.FAILED);
+    // SoundUtil.soundAndVibrate(SOUND.FAILED);
 
-    DialogCom().errorMsg(context, 'Success');
+    // DialogCom().errorMsg(context, 'Success');
   }
 
   @override
   void initState() {
+    homeModel.lstPageWidget[0] = checkInPage(title: "ISI DSC Crew", networkUrl: "");
     homeModel.pageViewListenerInit(setState: (){});
     super.initState();
   }
 
+  Widget checkInPage({String? title, String? networkUrl}) {
+    return SafeArea(
+      child: Column(
+        children: [
+          
+        ],
+      ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      appBar: appBar(
+        title: widget.title,
+        networkLogo: widget.logo,
+        textColor: primaryColor,
+        avatarBgColor: primaryColor
+      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   toolbarHeight: 100,
+      //   automaticallyImplyLeading: false,
+      //   title: Padding(
+      //     padding: const EdgeInsets.symmetric(vertical: 20),
+      //     child: Row(
+      //       children: [
+      //         SizedBox(
+      //           height: 50,
+      //           width: 50,
+      //           child: CircleAvatar(
+      //             backgroundColor: AppUtil.convertHexaColor(primaryColor),
+      //             backgroundImage: NetworkImage(widget.logo!),
+      //             radius: 100,
+      //           ),
+      //         ),
+
+      //         MyText(
+      //           left: 10,
+      //           text: widget.title,
+      //           fontSize: 20,
+      //           fontWeight: FontWeight.bold,
+      //           hexaColor: primaryColor,
+      //         )
+      //       ],
+      //     ),
+      //   ),
+      // ),
       body: MyPageView(
         homeModel: homeModel,
         onPageChange: onPageChange,
       ),
-      bottomNavigationBar: bottomAppBarNoCheck(context: context, controller: homeModel.controller, itemsList: homeModel.itemsList, active: homeModel.active, onTap: onTap
+      bottomNavigationBar: bottomAppBarNoCheck(context: context, bgColor: primaryColor, controller: homeModel.controller, itemsList: homeModel.itemsList, active: homeModel.active, onTap: onTap
       // (context, i){
       //   // homeModel!.onTap(context, i, (){
       //   //   setState(() {
