@@ -15,6 +15,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  final Map<String, dynamic> itemsGridData = {
+    "membershipType": ["Basic", "Standard", "Premium", "Walk-In"],
+    "imageBackground": [
+      "https://dangkorsenchey.com/images/memberships_card/Standard3.png", 
+      "https://dangkorsenchey.com/images/memberships_card/Standard2.png", 
+      "https://dangkorsenchey.com/images/memberships_card/Standard3.png", 
+      "https://dangkorsenchey.com/images/memberships_card/Standard2.png"
+    ],
+    "count": ["10", "15", "100", "1000"]
+  };
+
   final String primaryColor = "#254294";
 
   HomeModel homeModel = HomeModel();
@@ -134,7 +145,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget itemsGridList() {
     return GridView.builder(
-      itemCount: 4,
+      itemCount: itemsGridData["membershipType"].length,
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -143,11 +154,11 @@ class _HomePageState extends State<HomePage> {
       ),
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
           child: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage("https://dangkorsenchey.com/images/memberships_card/Standard2.png"), 
+                image: NetworkImage(itemsGridData["imageBackground"][index]), 
                 fit: BoxFit.fill
               ),
             ),
@@ -160,20 +171,34 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const MyText(
-                        text: "Basic",
+                      MyText(
+                        text: itemsGridData["membershipType"][index],
                         fontSize: 27,
                         fontWeight: FontWeight.bold,
                         color2: Colors.white,
                       ),
                       MyText(
-                        text: "0 Check In",
+                        text: "${itemsGridData["count"][index]} Checked In",
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color2: Colors.grey[50],
                       ),
                     ],
                   ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 75,
+                        width: 75,
+                        child: CircleAvatar(
+                          backgroundColor: AppUtil.convertHexaColor(primaryColor),
+                          radius: 100,
+                          child: const Icon(Icons.camera_alt, size: 50, color: Colors.white,)
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
