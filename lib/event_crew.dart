@@ -13,6 +13,7 @@ export 'package:event_crew/src/components/text_c.dart';
 export 'package:event_crew/src/components/dialog_c.dart';
 export 'package:event_crew/src/components/input_field_c.dart';
 export 'package:event_crew/src/components/appbar_c.dart';
+export 'package:event_crew/src/components/event_card_c.dart';
 
 /// Tools
 export 'package:event_crew/src/tool/app_utils.dart';

@@ -38,7 +38,7 @@ class EventCardCom extends StatelessWidget {
             height: 150,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset("packages/event_crew/assets/mdw/$img", fit: BoxFit.cover, width: MediaQuery.of(context).size.width,),
+              child: Image.network(img!, fit: BoxFit.cover, width: MediaQuery.of(context).size.width,),
             ),
           )
         ],

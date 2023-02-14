@@ -17,6 +17,16 @@ class HomeModel {
     {'asset': 'packages/event_crew/assets/icons/logout.png', 'name': 'Log Out'}
   ];
 
+  List<Map<String, dynamic>> memberShiIptemsList = [
+    {'asset': 'https://dangkorsenchey.com/images/memberships_card/Standard3.png', 'name': 'Basic', 'count': '10 Checked In'},
+    {'asset': 'https://dangkorsenchey.com/images/memberships_card/Standard2.png', 'name': 'Standard', 'count': '26 Checked In'},
+    {'asset': 'https://dangkorsenchey.com/images/memberships_card/Standard3.png', 'name': 'Premium', 'count': '77 Checked In'},
+    {'asset': 'https://dangkorsenchey.com/images/memberships_card/Standard2.png', 'name': 'Walk-In', 'count': '166 Checked In'},
+  ];
+
+  /// List Widget Page Of Bottom AppBar
+  /// 
+  /// 2 Pages For Scroll
   List<Widget> lstPageWidget = [
     // checkInPage(),
     Center(child: MyText(text: "CheckIn",),),

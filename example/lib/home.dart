@@ -1,5 +1,6 @@
 import 'package:event_crew/event_crew.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -14,17 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  final Map<String, dynamic> itemsGridData = {
-    "membershipType": ["Basic", "Standard", "Premium", "Walk-In"],
-    "imageBackground": [
-      "https://dangkorsenchey.com/images/memberships_card/Standard3.png", 
-      "https://dangkorsenchey.com/images/memberships_card/Standard2.png", 
-      "https://dangkorsenchey.com/images/memberships_card/Standard3.png", 
-      "https://dangkorsenchey.com/images/memberships_card/Standard2.png"
-    ],
-    "count": ["10", "15", "100", "1000"]
-  };
 
   final String primaryColor = "#254294";
 
@@ -42,71 +32,6 @@ class _HomePageState extends State<HomePage> {
 
     homeModel.active = value;
 
-    // if (value != homeModel.itemsList.length){
-      
-      
-    // }
-    //  else {
-
-    //   // Just Close Dialog
-    //   DialogCom().dialogMessage(
-    //     context, 
-    //     title: ClipRRect(
-    //       borderRadius: BorderRadius.circular(100),
-    //       child: SizedBox(
-    //         width: 30,
-    //         child: Lottie.asset(
-    //           "packages/event_crew/assets/animation/exit.json",
-    //           repeat: true,
-    //           reverse: true,
-    //           height: 100
-    //         ),
-    //       ),
-    //     ), 
-    //     edgeInsetsGeometry: const EdgeInsets.all(20),
-    //     content: AnimatedTextKit(
-    //       repeatForever: true,
-    //       pause: const Duration(seconds: 1),
-    //       animatedTexts: [
-
-    //         TypewriterAnimatedText(
-    //           "Are you sure wanna log out?",
-    //           textAlign: TextAlign.center,
-    //           textStyle: const TextStyle(
-    //             fontSize: 14
-    //           )
-    //         ),
-
-    //       ],
-    //     ),
-    //     // MyText(text: "Are you sure wanna sign out?",),
-    //     action2: TextButton(
-    //       // style: ButtonStyle(
-    //       //   backgroundColor: MaterialStateProperty.all(Colors.red),
-    //       //   shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
-    //       // ),
-    //       onPressed: () async {
-    //         Navigator.pop(context);
-
-    //         // DialogCom().dialogLoading(context, content: "Signing Out");
-    //         // await StorageServices.clearStorage();
-                            
-    //         // Dispose Web Socket
-    //         // Provider.of<MDWSocketProvider>(context, listen: false).dispose();
-                            
-    //         // Navigator.pushAndRemoveUntil(
-    //         //   context, 
-    //         //   Transition(child: LoginPage(), transitionEffect: TransitionEffect.LEFT_TO_RIGHT), 
-    //         //   (route) => false
-    //         // );
-    //       },
-    //       child: const MyText(text: "Yes", left: 10, right: 10, color2: Colors.red, fontSize: 12, fontWeight: FontWeight.bold,),
-    //     ),
-    //   );
-    // }
-    // await Future.delayed(Duration(milliseconds: 10), (){
-
-    // });
     setState(() { });
   }
 
@@ -127,84 +52,115 @@ class _HomePageState extends State<HomePage> {
     // DialogCom().errorMsg(context, 'Success');
   }
 
+  void initLstWidget(){
+    // Override Page Index 0 
+    homeModel.lstPageWidget[0] = checkInPage();
+    setState(() {
+      print("homeModel.lstPageWidget ${homeModel.memberShiIptemsList.length}");
+    });
+
+  }
+
   @override
   void initState() {
-    homeModel.lstPageWidget[0] = checkInPage();
+    initLstWidget();
     homeModel.pageViewListenerInit(setState: (){});
     super.initState();
   }
 
+  // Widget checkInPage({required int itemCount, required String networkImage, required String nameTicketType, required String checkInCount}) {
   Widget checkInPage() {
     return SafeArea(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: itemsGridList()
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            children: [
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: MyText(text: "Check In", fontSize: 27, fontWeight: FontWeight.w600, hexaColor: primaryColor, ),
+                ),
+              ),
+              
+              // EventCardCom(
+              //   img: networkImage, 
+              //   title: 'Check In', 
+              //   func: (){
+
+              //   }
+              // );
+              // for (int i = 0; i < homeModel.memberShiIptemsList.length; i++)
+              itemsGridList()
+              // (itemCount: i, 
+              //   networkImage: homeModel.memberShiIptemsList[i]['asset'], 
+              //   nameTicketType: homeModel.memberShiIptemsList[i]['name'], 
+              //   checkInCount: homeModel.memberShiIptemsList[i]['count']
+              // ),
+            ],
+          )
+        ),
       ),
     );
   }
 
+  // Widget itemsGridList({required int itemCount, required String networkImage, required String nameTicketType, required String checkInCount}) {
   Widget itemsGridList() {
-    return GridView.builder(
-      itemCount: itemsGridData["membershipType"].length,
-      physics: const BouncingScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: 16 / 7, 
-        crossAxisCount: 1,
-      ),
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(itemsGridData["imageBackground"][index]), 
-                fit: BoxFit.fill
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      MyText(
-                        text: itemsGridData["membershipType"][index],
-                        fontSize: 27,
-                        fontWeight: FontWeight.bold,
-                        color2: Colors.white,
-                      ),
-                      MyText(
-                        text: "${itemsGridData["count"][index]} Checked In",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color2: Colors.grey[50],
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 75,
-                        width: 75,
-                        child: CircleAvatar(
-                          backgroundColor: AppUtil.convertHexaColor(primaryColor),
-                          radius: 100,
-                          child: const Icon(Icons.camera_alt, size: 50, color: Colors.white,)
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
+    return InkWell(
+      onTap: () {
+        Navigator.push<void>(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => const QrScanner(title: "Check In", func: null, hallId: 'tga',),
           ),
         );
-      }
+      },
+      child: GridView.builder(
+        itemCount: homeModel.memberShiIptemsList.length,
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: 16 / 7, 
+          crossAxisCount: 1,
+        ),
+        itemBuilder: (context, i) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(homeModel.memberShiIptemsList[i]['asset']), 
+                  fit: BoxFit.fill
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    MyText(
+                      text: homeModel.memberShiIptemsList[i]['name'],
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
+                      color2: Colors.white,
+                    ),
+                    MyText(
+                      text: homeModel.memberShiIptemsList[i]['count'],
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color2: Colors.grey[50],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+      ),
     );
   }
 
