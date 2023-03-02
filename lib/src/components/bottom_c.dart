@@ -236,10 +236,18 @@ import 'package:event_crew/src/components/text_c.dart';
 //   );
 // }
 
+/// itemsList paramter get from model
+/// 
+/// Example Of itemList: 
+/// 
+/// {'asset': 'packages/event_crew/assets/icons/admission.png', 'name': 'Check In'},
+/// 
 /// TextColor = Hexa Code Of Color
+/// 
+/// bgColor will use default from Theme in your material Project
 Widget bottomAppBarNoCheck({
   required BuildContext? context,
-  required String? bgColor,
+  String? bgColor,
   String indicatorColor = "#FFFFFF",
   String textColor = "#FFFFFF",
   required PageController? controller,

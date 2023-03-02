@@ -11,6 +11,7 @@ class HomeModel {
 
   String? bgColor = "#F2F2F2";
 
+  /// {'asset': 'packages/event_crew/assets/icons/admission.png', 'name': 'Check In'},
   List<Map<String, dynamic>> itemsList = [
     {'asset': 'packages/event_crew/assets/icons/admission.png', 'name': 'Check In'},
     {'asset': 'packages/event_crew/assets/icons/check-out.png', 'name': 'Check Out'},
