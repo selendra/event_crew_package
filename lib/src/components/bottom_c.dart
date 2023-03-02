@@ -239,7 +239,7 @@ import 'package:event_crew/src/components/text_c.dart';
 /// TextColor = Hexa Code Of Color
 Widget bottomAppBarNoCheck({
   required BuildContext? context,
-  required String bgColor,
+  required String? bgColor,
   String indicatorColor = "#FFFFFF",
   String textColor = "#FFFFFF",
   required PageController? controller,
@@ -252,7 +252,7 @@ Widget bottomAppBarNoCheck({
   const double iconSize = 25;
 
   return BottomAppBar(
-    color: AppUtil.convertHexaColor(bgColor),
+    color: bgColor != null ? AppUtil.convertHexaColor(bgColor) : null,
     child: SizedBox(
       height: 70,
       child: Row(
