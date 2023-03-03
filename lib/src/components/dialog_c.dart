@@ -103,7 +103,7 @@ class DialogCom {
     );
   }
 
-  Future<Widget> successMsg(BuildContext context, String msg, {String? animtaion}) async{
+  Future<Widget> successMsg(BuildContext context, String msg, {String? animtaion, Widget? action2}) async{
     return await dialogMessage(
       context, 
       title: ClipRRect(
@@ -118,11 +118,12 @@ class DialogCom {
           ),
         ),
       ), 
-      content: MyText(text: msg, fontWeight: FontWeight.w500, left: 10, right: 10,)
+      content: MyText(text: msg, fontWeight: FontWeight.w500, left: 10, right: 10,),
+      action2: action2
     ) ?? Container();
   }
 
-  Future<Widget> errorMsg(BuildContext context, String error, {String? animtaion}) async {
+  Future<Widget> errorMsg(BuildContext context, String error, {String? animtaion, Widget? action2}) async {
     return await dialogMessage(
       context, 
       title: Lottie.asset(
@@ -131,7 +132,8 @@ class DialogCom {
         reverse: true,
         height: 80
       ),
-      content: MyText(text: error, fontWeight: FontWeight.w500, left: 10, right: 10,)
+      content: MyText(text: error, fontWeight: FontWeight.w500, left: 10, right: 10,),
+      action2: action2!
     ) ?? Container();
   }
 }
