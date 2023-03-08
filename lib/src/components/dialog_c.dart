@@ -134,7 +134,8 @@ class DialogCom {
         height: 80
       ),
       content: MyText(text: error, fontWeight: FontWeight.w500, left: 10, right: 10,),
-      action2: action2!
+      action2: action2!,
+      removeFirstBtn: false
     ) ?? Container();
   }
 }
