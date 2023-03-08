@@ -11,6 +11,7 @@ class DialogCom {
     {Widget? title, 
     Widget? content, 
     Widget? action2,
+    bool? removeFirstBtn,
     EdgeInsetsGeometry? edgeInsetsGeometry
   }
   ) {
@@ -29,7 +30,7 @@ class DialogCom {
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
           actions: [
             
-            TextButton(
+            removeFirstBtn == false ? TextButton(
               // style: ButtonStyle(
               //   backgroundColor: MaterialStateProperty.all(Colors.white.withOpacity(1)),
               //   shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
@@ -38,7 +39,7 @@ class DialogCom {
                 Navigator.pop(context);
               },
               child: const MyText(text: "Close", left: 10, right: 10, color2: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
-            ),
+            ) : Container(),
 
             action2 ?? Container()
           ],
