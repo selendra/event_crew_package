@@ -12,12 +12,13 @@ class DialogCom {
     Widget? content, 
     Widget? action2,
     bool? removeFirstBtn,
-    EdgeInsetsGeometry? edgeInsetsGeometry
+    EdgeInsetsGeometry? edgeInsetsGeometry,
+    bool? barrierDismissible = true
   }
   ) {
 
     return showDialog(
-      barrierDismissible: true,
+      barrierDismissible: barrierDismissible!,
       context: context,
       builder: (context) {
 
@@ -135,7 +136,8 @@ class DialogCom {
       ),
       content: MyText(text: error, fontWeight: FontWeight.w500, left: 10, right: 10,),
       action2: action2!,
-      removeFirstBtn: true
+      removeFirstBtn: true,
+      barrierDismissible: false
     ) ?? Container();
   }
 }
