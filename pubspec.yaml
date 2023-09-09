@@ -5,7 +5,7 @@ homepage: https://github.com/selendra/event_crew_package.git
 
 environment:
   sdk: '>=3.0.1 <4.0.0'
-  flutter: ">=1.17.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
@@ -15,7 +15,6 @@ dependencies:
   transition:
   http:
   flutter_dotenv:
-  shared_preferences:
   qr_code_scanner:
   socket_io_client:
   provider:

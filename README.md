@@ -37,3 +37,18 @@ const like = 'sample';
 Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.
+
+## Packages:
+- cupertino_icons:
+- transition:
+- http:
+- flutter_dotenv:
+- qr_code_scanner:
+- socket_io_client:
+- provider:
+- vibration:
+- flutter_ringtone_player:
+- rename:
+- lottie:
+- animated_text_kit:
+- flutter_svg:
