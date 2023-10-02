@@ -13,7 +13,7 @@ class DialogCom {
     Widget? action2,
     bool? removeFirstBtn,
     EdgeInsetsGeometry? edgeInsetsGeometry,
-    bool? barrierDismissible = false
+    bool? barrierDismissible
   }
   ) {
 
@@ -125,7 +125,7 @@ class DialogCom {
     ) ?? Container();
   }
 
-  Future<Widget> errorMsg(BuildContext context, String error, {String? animtaion, Widget? action2}) async {
+  Future<Widget> errorMsg(BuildContext context, String error, {String? animtaion, Widget? action2, bool barrierDismissible = true}) async {
     return await dialogMessage(
       context, 
       title: Lottie.asset(
@@ -137,7 +137,7 @@ class DialogCom {
       content: MyText(text: error, fontWeight: FontWeight.w500, left: 10, right: 10,),
       action2: action2,
       removeFirstBtn: true,
-      barrierDismissible: false
+      barrierDismissible: barrierDismissible
     ) ?? Container();
   }
 }
