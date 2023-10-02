@@ -53,10 +53,10 @@ class DialogCom {
     );
   }
 
-  dialogLoading(BuildContext context, {bool? isTicket = false, String? content}) {
+  dialogLoading(BuildContext context, {bool? isTicket = false, String? content, bool barrierDismissible = false}) {
 
     return showDialog(
-      barrierDismissible: true,
+      barrierDismissible: barrierDismissible,
       context: context,
       builder: (context) {
         return BackdropFilter(
