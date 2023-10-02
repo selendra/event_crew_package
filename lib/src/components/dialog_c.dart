@@ -13,7 +13,7 @@ class DialogCom {
     Widget? action2,
     bool? removeFirstBtn,
     EdgeInsetsGeometry? edgeInsetsGeometry,
-    bool? barrierDismissible = true
+    bool? barrierDismissible = false
   }
   ) {
 
@@ -135,7 +135,7 @@ class DialogCom {
         height: 80
       ),
       content: MyText(text: error, fontWeight: FontWeight.w500, left: 10, right: 10,),
-      action2: action2!,
+      action2: action2,
       removeFirstBtn: true,
       barrierDismissible: false
     ) ?? Container();
